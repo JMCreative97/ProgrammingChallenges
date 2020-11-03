@@ -1,0 +1,18 @@
+int maxPower(string s) {
+
+    if(s.size() <= 1)return s.size();
+
+    int curr_biggest =0, next_biggest =0;
+    char compare;
+    for(auto c : s){
+        if(compare != c){
+            compare = c;
+            curr_biggest = max(curr_biggest, next_biggest);
+            next_biggest = 0;
+        }
+
+        next_biggest++;
+    }
+
+    return max(curr_biggest, next_biggest);
+}
