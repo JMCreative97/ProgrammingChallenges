@@ -1,0 +1,22 @@
+public int getDecimalValue(ListNode head) {
+
+    if(head.next == null)return head.val;
+
+    int maxPow = 0;
+    ListNode tmp = head;
+
+    while(tmp != null){
+        maxPow++;
+        tmp = tmp.next;
+    }
+
+    int return_value = 0;
+    while(head != null){
+        --maxPow;
+        if(head.val == 1){
+            return_value += Math.pow(2, maxPow);
+        } 
+        head = head.next;
+    }
+    return return_value;
+}
