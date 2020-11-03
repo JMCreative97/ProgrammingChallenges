@@ -1,0 +1,20 @@
+ListNode* insertionSortList(ListNode* head) {
+    if(head == NULL || head->next == NULL)return head;
+
+    ListNode *tmp = head;
+    vector<int> list;
+
+    while(tmp != NULL){
+        list.push_back(tmp->val);
+        tmp = tmp->next;
+    }
+
+    std::sort(list.begin(), list.end());
+
+    tmp = head;
+    for(auto i : list){
+        tmp->val = i;
+        tmp = tmp->next;
+    }
+    return head;
+}
