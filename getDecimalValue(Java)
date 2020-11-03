@@ -12,11 +12,10 @@ public int getDecimalValue(ListNode head) {
 
     int return_value = 0;
     while(head != null){
-        --maxPow;
-        if(head.val == 1){
-            return_value += Math.pow(2, maxPow);
-        } 
+        return_value += head.val * Math.pow(2, --maxPow);
         head = head.next;
     }
+
     return return_value;
 }
+   
