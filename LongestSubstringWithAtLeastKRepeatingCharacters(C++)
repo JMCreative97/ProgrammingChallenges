@@ -1,0 +1,37 @@
+int longestSubstring(string s, int k) {
+
+  if(k <= 0 || s.size() == 0)return 0;
+  if(s.size() == 1 && k == 1)return 1;
+
+  char c;
+  int output = 0, counter = 0;
+
+  std::sort(s.begin(), s.end());
+
+  for(int i=0;i<s.size();i++){
+     if(i == 0){ 
+          c = s[i];
+         ++counter;
+          continue;
+     }
+     else{
+          if(s[i] == c){
+              counter++;
+          }
+          else{
+              c = s[i];
+              if(counter >= k){
+                  output += counter;
+              }
+              counter = 1;
+          }
+      }
+  }
+
+
+  if(counter > 0 && counter >= k){
+      output+=counter;
+  }
+
+  return output;
+}
