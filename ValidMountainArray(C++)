@@ -1,0 +1,22 @@
+bool validMountainArray(vector<int>& arr) {
+    if(arr.size() == 0 || arr.size() == 1 || arr.size() == 2)return false;
+
+    int counter =0;
+
+    //Ascending
+    while(counter < arr.size()-1 && (arr[counter] < arr[counter+1]))
+      counter++;
+
+
+    if((counter == arr.size()-2 && (arr[counter+1] > arr[counter]) || (counter == arr.size()-1) || counter == 0))
+      return false;
+
+    //Decending
+    while(counter < arr.size()-1 && (arr[counter] > arr[counter+1]))
+      counter++;
+
+    if(counter == arr.size()-1)
+      return true;
+
+    return false;
+}
