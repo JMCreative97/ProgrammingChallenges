@@ -1,0 +1,24 @@
+int maxOperations(vector<int>& nums, int k) {
+
+    map<int, int> m;
+    int operations = 0;
+
+    for(int i = 0;i<nums.size();i++){
+        cout << "Assessing matches for " << nums[i] << endl; 
+
+       if(nums[i] >= k) continue;
+       else if(m[nums[i]] != 0){
+           cout << "Match found for " << nums[i] endl; 
+           ++operations;
+           m[nums[i]] = 0;
+           nums.erase(nums.begin() + i);
+           i--;   
+       }
+       else {
+           m[k-nums[i]] = nums[i];
+           cout << "No match for " << nums[i] << " adding " << k-nums[i] << endl;   
+       }
+    }
+
+    return operations;
+}
