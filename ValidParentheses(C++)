@@ -1,0 +1,26 @@
+bool isValid(string s) {
+
+    int s_size = s.size();
+    if(s_size == 0 || s_size == 1)return false;
+
+    map<char, char> m;
+    m['}'] = '{';
+    m[']'] = '[';
+    m[')'] = '(';
+
+    stack<int> stk;
+
+    for(auto i : s){
+        if(i == '(' || i == '[' || i == '{')
+            stk.push(i);
+        else{
+            if(stk.size() > 0 && m[i] == stk.top())stk.pop();
+            else return false;
+        }
+    }
+
+    if(stk.size() > 0 )return false;
+
+    return true;
+
+}
