@@ -1,11 +1,10 @@
 public boolean kLengthApart(int[] nums, int k) {
 
-    if(nums.length == 1 || nums.length == 2) return true;
+    int nums_length = nums.length;
+    if(nums_length == 1 || nums_length == 2) return true;
 
     boolean found_one = false;
     int counter = 0;
-
-    //[0,0,1,0,0,0,1]
 
     for(int i : nums) {
         if(i == 1 && !found_one)
