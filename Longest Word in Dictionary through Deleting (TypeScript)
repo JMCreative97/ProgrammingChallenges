@@ -1,0 +1,51 @@
+function findLongest(d : Array<string>) : string{ 
+     var biggest_len : number = 0;
+     
+    for(var i =0;i<d.length;i++){
+         biggest_len = Math.max(biggest_len, d[i].length);
+     }
+    
+     for(var i =0;i<d.length;i++){
+        if(d[i].length < biggest_len){
+            d.splice(i, 1);
+            --i;
+        }            
+     }
+
+    if(d.length > 1){
+        return smallestLexographical(d);
+    }
+    else return d[0];
+    
+}
+
+function smallestLexographical(d : Array<string>) : string{
+    
+    d.sort(function (a, b) {return a.localeCompare(b);});
+    
+    return d[0];
+}
+
+function findLongestWord(s: string, d: string[]): string {
+
+        var matching_str : Array<string> = [];
+        let biggest_str = 0; 
+       
+        for(var word of d){
+            let matches = 0;
+            for(var i=0; i<s.length ;i++){
+
+                if(s.charAt(i) == word.charAt(matches))
+                    ++matches;
+            }
+            
+            if(matches == word.length) 
+                matching_str.push(word);
+        }
+    
+        if(matching_str.length == 0) 
+            return "";
+    
+        return findLongest(matching_str);
+    
+};
