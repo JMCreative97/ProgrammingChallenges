@@ -1,0 +1,28 @@
+function generate(numRows: number): number[][] {
+
+    let triangle: number[][] = [[1]];
+    if(numRows == 1)return triangle;
+    
+    triangle.push([1,1]);
+    if(numRows == 2)return triangle;
+    
+    triangle.push([1,2,1]);
+    if(numRows == 3)return triangle;
+
+    numRows -= 2;
+    
+    for(let i=2;i<=numRows;i++){
+        
+        let tmp=[1,1];
+        let counter = triangle[i].length - 1;
+        
+        for(let y=1;y<=counter;y++){
+            tmp.splice(1, 0, (triangle[i][y-1] + triangle[i][y]));
+        }
+    
+        triangle.push(tmp);
+        
+    }
+
+    return triangle;
+};
