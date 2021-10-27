@@ -1,0 +1,14 @@
+export const findOdd = (l: number[]): number => {
+  if(l.length === 1) return l[0];
+
+        const sortedL = l.sort();
+        let counter = 1;
+        for(let i=0;i<sortedL.length;i++)
+            if(i === 0 && sortedL[i] !== sortedL[i+1]) return sortedL[0];
+            else if(i !== sortedL.length - 1)
+                if(sortedL[i] === sortedL[i+1]) counter++;
+                else if(counter % 2 !== 0) return sortedL[i];
+                else counter = 1;       
+        
+        return sortedL[sortedL.length - 1];
+};
