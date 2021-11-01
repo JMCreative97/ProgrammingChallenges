@@ -1,0 +1,42 @@
+const solution = (input: number): string => {	
+
+	const symbols: Record<number, string> = {1: "I", 5: "V", 10: "X", 50: "L", 100: "C", 500: "D", 1000: "M"};
+	var returnStr: string[] = [];
+	let tenthPower = 1;
+
+	while(input >= 1){
+		let currentNum: number =  Math.floor(input % 10);
+
+		if(symbols[currentNum * tenthPower])
+			returnStr.unshift(symbols[currentNum * tenthPower]);	
+		
+		else if(currentNum > 0) {
+			let tmp: string[] = [];
+		
+			if(currentNum === 4 || currentNum === 9){
+				if(currentNum === 4) {				
+					tmp.push(symbols[5 * tenthPower]);
+				}
+				else if(currentNum === 9) {					
+					tmp.push(symbols[1 * (tenthPower * 10)]);
+				}
+				tmp.unshift(symbols[1* tenthPower]);
+			}
+			else {
+				if(currentNum > 5){
+					tmp.push(symbols[5 * tenthPower]);
+					currentNum -= 5;
+				}
+				while(currentNum-- != 0)
+					tmp.push(symbols [1*tenthPower] );
+				
+			}
+			if(tmp.length > 0)
+				returnStr.unshift(tmp.join(''));
+		}
+				
+		input /= 10;
+		tenthPower *= 10;
+	}
+	return returnStr.join('');
+}
